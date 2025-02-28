@@ -2,8 +2,8 @@ let fogShader;
 let textureImg;
 let cubes = [];
 let fogColor = [0.8, 0.9, 1, 1];
-let fogNear = 100.0;
-let fogFar = 300.0;
+let fogNear = 300.0;
+let fogFar = 700.0;
 let numCubes = 40;
 
 function preload() {
