@@ -2,9 +2,13 @@ let fogShader;
 let textureImg;
 let cubes = [];
 let fogColor = [0.8, 0.9, 1, 1];
-let fogNear = 300.0;
+let fogNear = 700.0;
 let fogFar = 700.0;
 let numCubes = 40;
+
+// Declarar los sliders y etiquetas
+let fogNearSlider, fogFarSlider;
+let fogNearLabel, fogFarLabel;
 
 function preload() {
   textureImg = loadImage("https://webglfundamentals.org/webgl/resources/f-texture.png");
@@ -23,10 +27,29 @@ function setup() {
     let z = -50 - i * 20;
     cubes.push({ x, y, z });
   }
+
+  // Crear sliders y etiquetas
+  fogNearSlider = createSlider(0, 1000, fogNear, 1);
+  fogNearSlider.position(10, height + 10);
+  fogNearLabel = createDiv(`fog near: ${fogNear}`);
+  fogNearLabel.position(200, height + 10);
+  
+  fogFarSlider = createSlider(0, 1000, fogFar, 1);
+  fogFarSlider.position(10, height + 40);
+  fogFarLabel = createDiv(`fog far: ${fogFar}`);
+  fogFarLabel.position(200, height + 40);
 }
 
 function draw() {
   background(204, 229, 255);
+
+  // Actualizar los valores de fogNear y fogFar con los valores de los sliders
+  fogNear = fogNearSlider.value();
+  fogFar = fogFarSlider.value();
+
+  // Actualizar las etiquetas con los valores actuales
+  fogNearLabel.html(`fog near: ${fogNear}`);
+  fogFarLabel.html(`fog far: ${fogFar}`);
 
   shader(fogShader);
 
